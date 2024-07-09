@@ -1,0 +1,117 @@
+@import '@radix-ui/colors/black-alpha.css';
+/*@import '@radix-ui/colors/violet.css';*/
+/*@import '@radix-ui/colors/mauve.css';*/
+
+
+button, h3 {
+    all: unset;
+}
+
+.AccordionRoot {
+    width: auto;
+    background-color: rgba(240, 248, 255, 0.84);
+    border-radius: 6px;
+}
+
+.AccordionItem {
+    overflow: hidden;
+    margin-top: 4px;
+    border-radius: 4px;
+}
+
+.AccordionItem:first-child {
+    margin-top: 0;
+    /*border-top-left-radius: 4px;*/
+    /*border-top-right-radius: 4px;*/
+}
+
+.AccordionItem:last-child {
+    /*border-bottom-left-radius: 4px;*/
+    /*border-bottom-right-radius: 4px;*/
+}
+
+.AccordionItem:focus-within {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 0 2px var(--mauve-12);
+}
+
+.AccordionHeader {
+    display: flex;
+    /*background-color: rgba(240, 248, 255, 0.94)*/
+}
+
+/*.AccordionTrigger {*/
+/*    font-family: inherit;*/
+/*    background-color: transparent;*/
+/*    padding: 0 20px;*/
+/*    height: 60px;*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*    font-size: 8px;*/
+/*    line-height: 1;*/
+/*    !*color: var(--violet-11);*!*/
+/*    box-shadow: 0 1px 0 var(--mauve-6);*/
+/*}*/
+
+.AccordionTrigger:hover {
+    background-color: var(--mauve-2);
+}
+
+.AccordionContent {
+    overflow: hidden;
+    font-size: 8px;
+    color: var(--mauve-11);
+    justify-content: space-between;
+
+}
+.AccordionContent[data-state='open'] {
+    animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+.AccordionContent[data-state='closed'] {
+    animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.AccordionContentText {
+    padding: 20px 20px;
+    /*background-color: rgba(224, 157, 157, 0.36);*/
+    background-color: rgba(220, 240, 255, 0.84);
+    border-radius: 4px;
+}
+
+.AccordionChevron {
+    color: rgba(150, 207, 250, 0.84);
+    transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
+    justify-content: right;
+}
+
+.AccordionTrigger[data-state='open'] > .AccordionChevron {
+    color: rgba(43, 136, 213, 0.84);
+    transform: rotate(180deg);
+}
+
+/*.AccordionTrigger[data-state='close'] > .Accordion_Chevron {*/
+/*    color: rgba(150, 207, 250, 0.84);*/
+/*    transform: rotate(180deg);*/
+/*}*/
+
+
+@keyframes slideDown {
+    from {
+        height: 0;
+    }
+    to {
+        height: var(--radix-accordion-content-height);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        height: var(--radix-accordion-content-height);
+    }
+    to {
+        height: 0;
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "qa":
+  [
+    {"question": "Am I allowed to bring my child(ren) to the wedding?",
+    "answer":"While we love your kids, our ceremony and reception are for adults only (with exception of nieces and nephews and family of the bride and groom). Think of it as a night out!"},
+    {"question":"Am I allowed to bring a guest or plus one?",
+      "answer":"To keep guest count intimate and to meet venue guidelines, we are only able to accommodate guests formally invited on your wedding invitation. We hope you can respect our wishes as we are trying to keep the wedding as intimate as possible. Thank you so much for your understanding."},
+    {"question":"Is there parking available at the venues?",
+      "answer":"Free parking at both venues is available. Please consider car-pooling with others or use driving services if you plan on drinking at the reception."},
+    {"question":"What is the attire for the wedding? Any colors or styles you’d prefer me to wear?",
+      "answer":"Sunday best or semi-formal attire. Since the wedding will take place in the spring, guests are encouraged to wear spring colors (pastels) such as pink, peach, yellow, light blue, light green, or light purple. Absolutely no jeans, shorts, tank tops, t-shirts, flip flops, etc. are allowed. We encourage guests to dress up and party with us!"},
+    {"question":"What should I do if I cannot make the wedding?",
+      "answer":"You will be dearly missed! If you cannot make it to our wedding, please let us know as soon as possible so we can plan accordingly."},
+    {"question":"What are the addresses and times of the ceremony and the reception?",
+      "answer":"Addresses and times should be located on the back of your wedding invitation. To review the times and locations on the website, invited guests can go to the Travel page(listed in navigation bar about)"},
+    {"question":"What time should I arrive at your wedding ceremony?",
+      "answer":"Our wedding ceremony will promptly begin at 4:00 pm. Please arrive about 15-30 minutes prior to the wedding ceremony. Doors will close at 4:00 pm and any guests arriving at a later time will be ushered towards the designated balcony area upstairs for viewing."},
+    {"question":"Will there be a gap in between the ceremony and reception time?",
+      "answer":"Yes! As the bride and groom will be spending time in between the ceremony and reception to take photos with family, other guests will have the opportunity in between the ceremony and reception time to relax before the reception. You may begin arriving at the reception location at 5:30 pm for a small cocktail hour for light refreshments and drinks."},
+    {"question":"Will there be drinks at the reception?",
+      "answer":"Beer, wine, hard seltzers & soda will be served at the wedding reception. Outside beverages --not served in glassware-- can also be brought to the reception. However, the bride and groom and entities associated such as the catering staff, will not be responsible or liable for drinks brought by guests."},
+    {"question":"Do you have a wedding gift registry? How can we give?",
+      "answer":"Thank you for being a part of our special day! For those who have never attended a Vietnamese wedding, giving monetary gifts is a sign of wishing the couple prosperity, health, and happiness. In order to help align to the Bride’s Vietnamese heritage, we ask that you please consider donating or making a monetary contribution towards our honeymoon and/or home fund. If you wish to give a monetary gift in person, you will be able to place it in our gift box at the beginning the reception or us at table greetings or to give your gift directly. Please refer to the ‘Giving’ page on our website for methods of giving."},
+    {"question":"Am I allowed to take photos and videos at your wedding?",
+      "answer":"As we want guests to enjoy and be present with us in the moment of our wedding, we will be having an “unplugged ceremony”. All guests will be asked to silence and put away all electronic devices such as phones and tablets. We have hired a team of professional photographers and videographers who will be there to capture the day for us. There will be a time during the ceremony in which the officiant will queue guests to take out their devices for photos and videos, but until that moment, please refrain from using your devices. Photography and videography are allowed and strongly encouraged after the ceremony and during the reception. Feel free to take as many photos and videos during the reception time and send and/or tag the bride and groom!"},
+    {
+      "question": "How do I follow on Instagram?",
+      "answer": "Instagram: @fakeInstagram"
+    }
+  ]
+}

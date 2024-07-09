@@ -1,0 +1,77 @@
+{
+  "access": [
+    { "public": 0},
+    { "guest": 1},
+    { "wedding_party": 2},
+    { "coordinator":  3},
+    { "admin":  4}
+  ],
+
+  "pages":  [
+    { "path":"/",
+      "title": "Home",
+      "description": "Home / landing page",
+      "icon": "Home",
+      "access": 0
+    },
+
+    { "path":"/giving",
+      "title": "Giving",
+      "description": "How to give to the bride & groom",
+      "icon": "Gift",
+      "access": 3},
+
+    { "path":"/ourstory",
+      "title": "Our Story",
+      "description": "",
+      "icon": "Book",
+      "access": 3
+    },
+    { "path":"/rsvp",
+      "title": "RSVP",
+      "description": "Allows user to change status of RSVP",
+      "icon": "CalendarCheck",
+      "access": 1
+    },
+    { "path":"/travel",
+      "title": "Travel",
+      "description": "Hotel information and maps indicating localities",
+      "icon": "MapMarkedAlt",
+      "access": 1
+    },
+
+    { "path":"/weddingday",
+      "title": "Wedding Day",
+      "description": "Itinerary of events pertaining to the wedding including events prior-to & including 'day of' wedding",
+      "icon": "Ring",
+      "access": 3
+    },
+    { "path":"/qa",
+      "title": "Q & A",
+      "description": "",
+      "icon": "QuestionCircle",
+      "access": 1
+    },
+    { "path":"/eventschedule",
+      "title": "Event Schedule",
+      "description": "Itinerary of events pertaining to the wedding including events prior-to & including 'day of' wedding",
+      "icon": "CalendarDay",
+      "access": 3
+    },
+
+    { "path":"/teaceremony",
+      "title": "Tea Ceremony",
+      "description": "",
+      "icon": "MugHot",
+      "access": 3
+    },
+
+    { "path":"/rehearsaldinner",
+      "title": "Rehearsal Dinner",
+      "description": "Rehearsal Dinner",
+      "icon": "Utensils",
+      "access": 3
+    }
+
+    ]
+}

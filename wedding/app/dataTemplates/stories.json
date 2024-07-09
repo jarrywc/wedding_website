@@ -1,0 +1,55 @@
+{
+  "tab_list" : [
+  {
+    "tab_title": "Her Story",
+    "body": [
+      {
+        "title": "Growing up",
+        "body": "Diana is the daughter of ....",
+        "photos": [
+          "public/photo/path"
+        ]
+      }
+    ],
+    "id": "her_story"
+  },
+  {
+    "tab_title": "His Story",
+    "body": [
+      {
+        "title": "Growing up",
+        "body": "Born and raised in Alpharetta/Roswell, GA. Family from Georgia and Mississippi. Number three of six children"
+      },
+			{
+        "title": "Faith",
+        "body": "Believer in Christ. Attends a Vietnamese Alliance Church."
+      },
+      {
+        "title": "Bullet",
+        "body": "",
+        "unordered_list": [
+          "Item A", "Item C", "Item T"
+        ]
+      },
+      {
+        "title": "Numeric List",
+        "body": "",
+        "ordered_list": [
+          "Item 1", "Item 2", "Item 3"
+        ]
+      }
+    ],
+    "id": "his_story"
+  },
+  {
+    "tab_title": "Their Story",
+    "body": [
+      {
+        "title": "Meeting in Ecuador",
+        "body": "Diana met Jarred while traveling abroad ....",
+        "photos": [ "public/photo/path" ]
+      }
+    ],
+    "id": "their_story"
+  }
+]}

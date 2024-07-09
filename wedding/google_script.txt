@@ -1,0 +1,240 @@
+const findEndpoint = 'https://us-east-1.aws.data.mongodb-api.com/app/data-anxos/endpoint/data/v1/action/findOne';
+const updateOne = 'https://us-east-1.aws.data.mongodb-api.com/app/data-anxos/endpoint/data/v1/action/updateOne';
+const updateMany = 'https://us-east-1.aws.data.mongodb-api.com/app/data-anxos/endpoint/data/v1/action/updateMany'
+const insertOne = 'https://us-east-1.aws.data.mongodb-api.com/app/data-anxos/endpoint/data/v1/action/insertOne';
+const insertMany = 'https://us-east-1.aws.data.mongodb-api.com/app/data-anxos/endpoint/data/v1/action/insertMany';
+const clusterName = "Cluster0"
+
+function getAPIKey() {
+ const userProperties = PropertiesService.getUserProperties();
+ let apikey = userProperties.getProperty('APIKEY');
+ let resetKey = false; //Make true if you have to change key
+ if (apikey == null || resetKey ) {
+  var result = SpreadsheetApp.getUi().prompt(
+   'Enter API Key',
+   'Key:', SpreadsheetApp.getUi().ButtonSet);
+  apikey = result.getResponseText()
+  userProperties.setProperty('APIKEY', apikey);
+ }
+ return apikey;
+}
+
+function insertDoc(documents, collection) {
+  const apikey = getAPIKey()
+  const payload = {
+      dataSource: clusterName,
+      database: "wedding",
+      collection: collection,
+      documents: documents
+    }
+    Logger.log(JSON.stringify(payload))
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    headers: {"api-key": apikey}
+  };
+  return UrlFetchApp.fetch(insertOne, options);
+}
+
+function insertDocs(documents, collection) {
+  const apikey = getAPIKey()
+  const payload = {
+      dataSource: clusterName,
+      database: "wedding",
+      collection: collection,
+      documents: documents
+    }
+    Logger.log(JSON.stringify(payload))
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    headers: {"api-key": apikey}
+  };
+  return UrlFetchApp.fetch(insertMany, options);
+}
+
+function updateDoc(filter, update, collection) {
+
+
+  const apikey = getAPIKey()
+  const payload = {
+      dataSource: clusterName,
+      database: "wedding",
+      collection: collection,
+      filter: filter,
+      update: update
+    }
+    Logger.log(JSON.stringify(payload))
+  const options = {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    headers: {"api-key": apikey}
+  };
+  return UrlFetchApp.fetch(updateOne, options);
+}
+
+function createGroups(){
+   const activeSheetsApp = SpreadsheetApp.getActiveSpreadsheet();
+   const groupSheet = activeSheetsApp.getSheetByName("DB_DoNotEdit")
+   const groupsDataRange = groupSheet.getDataRange().getValues();
+   var groupsMemo = {}
+   var groups = []
+   var groupsName = []
+   for (var g=1;g<groupsDataRange.length;g++){
+    Logger.log(Object.keys(groupsMemo))
+    if (!Object.keys(groupsMemo).includes(groupsDataRange[g][3])){
+      // Missing Group Name -> Add group to memo
+      groupsMemo[groupsDataRange[g][3]] = "";
+      Logger.log("added "+groupsDataRange[g][3])
+      groups.push({ "name": groupsDataRange[g][3], "phone": groupsDataRange[g][2] })
+      groupsName.push(groupsDataRange[g][3])
+    }
+   }
+   Logger.log(groupsMemo)
+   Logger.log(groups)
+   response = insertDocs(documents=groups, collection="Group")
+  Logger.log(response)
+  var ids = JSON.parse(response.getContentText()).insertedIds
+  Logger.log(ids)
+  for (var g=0;g<groupsName.length;g++){
+    groupsMemo[groupsName[g]] = ids[g]
+  }
+  Logger.log(groupsMemo)
+  for (var g=1;g<groupsDataRange.length;g++){
+    var val = groupsMemo[groupsDataRange[g][3]]
+    Logger.log('row '+g+' val '+val)
+    groupSheet.getRange(g+1, 5).setValue(val)
+  }
+
+}
+
+function createTables(){
+   const activeSheetsApp = SpreadsheetApp.getActiveSpreadsheet();
+   const tSheet = activeSheetsApp.getSheetByName("DB_DoNotEdit")
+   const tdr = tSheet.getDataRange().getValues();
+   var tMemo = {}
+   var tables = []
+   var tablesName = []
+   for (var g=1;g<tdr.length;g++){
+    Logger.log(Object.keys(tMemo))
+    if (!Object.keys(tMemo).includes(tdr[g][6])){
+      // Missing Group Name -> Add group to memo
+      tMemo[tdr[g][6]] = "";
+      Logger.log("added "+tdr[g][6])
+      tables.push({ "number": tdr[g][6],"type": tdr[g][7] })
+      tablesName.push(tdr[g][6])
+    }
+   }
+   Logger.log(tMemo)
+   Logger.log(tables)
+   response = insertDocs(documents=tables, collection="Table")
+  Logger.log(response)
+  var ids = JSON.parse(response.getContentText()).insertedIds
+  Logger.log(ids)
+  for (var g=0;g<tablesName.length;g++){
+    tMemo[tablesName[g]] = ids[g]
+  }
+  Logger.log(tMemo)
+  for (var g=1;g<tdr.length;g++){
+    var val = tMemo[tdr[g][6]]
+    Logger.log('row '+g+' val '+val)
+    tSheet.getRange(g+1, 9).setValue(val)
+  }
+
+}
+
+function createUsers(){
+  //const now = new Date();
+  const nowMil = Date.now()
+  const now = Math.round(nowMil/1000)
+  const activeSheetsApp = SpreadsheetApp.getActiveSpreadsheet();
+  const usersSheet = activeSheetsApp.getSheetByName("DB_DoNotEdit")
+  const udr = usersSheet.getDataRange().getValues();
+  var users = []
+  var usersName = []
+  for (var i=1;i<udr.length;i++){
+    users.push({
+    'name': udr[i][0],
+    'email':udr[i][1],
+    'phone' :udr[i][2],
+    'group' :udr[i][3],
+    'groupId' :udr[i][4],
+    'attending': udr[i][5],
+    'table' :udr[i][6],
+    'tableId' :udr[i][8],
+    'comment' :udr[i][9],
+    'organizer' :udr[i][10],
+    'createdAt' : {"$timestamp": {"t": now ,"i":1}},
+    'updatedAt' :  {"$timestamp": {"t": now,"i":1}}
+    })
+    usersName.push(udr[i][0])
+  }
+  response = insertDocs(documents=users, collection="User")
+  Logger.log(response)
+  var ids = JSON.parse(response.getContentText()).insertedIds
+
+  var gUserQueue = {}
+  var tUserQueue = {}
+
+  for (var i=1;i<udr.length;i++){
+    var userId = ids[i-1]
+    Logger.log('row '+i+' val '+userId)
+    usersSheet.getRange(i+1, 12).setValue(userId)
+    // Now queue up changes for Tables and Groups
+    var tableId = usersSheet.getRange(i+1, 9).getValue()
+    // Table
+    if (!Object.keys(tUserQueue).includes(tableId)){
+      var _list = []
+      _list.push(userId)
+      tUserQueue[tableId] = _list
+    } else {
+      var list = tUserQueue[tableId]
+      list.push(userId)
+      tUserQueue[tableId] = list
+    }
+    var groupId = usersSheet.getRange(i+1, 5).getValue()
+    // Group
+    if (!Object.keys(gUserQueue).includes(groupId)){
+      var _list = []
+      _list.push(userId)
+      gUserQueue[groupId] = _list
+    } else {
+      var list = gUserQueue[groupId]
+      list.push(userId)
+      gUserQueue[groupId] = list
+    }
+
+  }
+  Logger.log(gUserQueue)
+    for (var k in gUserQueue) {
+      var filter = {"_id": { "$oid": k}}
+      var update = {
+        "$set": {
+          "users": gUserQueue[k]
+        }
+      }
+      updateDoc(filter, update, "Group")
+    }
+    Logger.log(tUserQueue)
+    for (var k in tUserQueue) {
+      var filter = {"_id": { "$oid": k}}
+      var update = {
+        "$set": {
+          "users": tUserQueue[k]
+        }
+      }
+      updateDoc(filter, update, "Table")
+    }
+
+}
+
+function initializeDB(){
+  createGroups();
+  createTables();
+  createUsers();
+}
+
+
